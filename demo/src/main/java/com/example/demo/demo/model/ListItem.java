@@ -1,42 +1,27 @@
 package com.example.demo.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-@Entity // This tells Hibernate to make a table out of this class
+@Getter
+@Setter
+@Entity
 public class ListItem {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
-    private String itemName;
+    private String name;
 
     @ManyToOne
     @JoinColumn(name="item_id")
     private List list;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return itemName;
-    }
-
-    public void setName(String name) {
-        this.itemName = name;
-    }
-
-    public List getList() {
-        return list;
-    }
-
-    public void setList(List list) {
-        this.list = list;
-    }
 }

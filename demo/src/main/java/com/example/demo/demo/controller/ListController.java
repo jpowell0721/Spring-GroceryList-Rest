@@ -5,17 +5,19 @@ import com.example.demo.demo.model.ListItem;
 import com.example.demo.demo.repository.ListItemRepository;
 import com.example.demo.demo.service.ListService;
 import com.example.demo.demo.service.UserService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/lists") // This means URL's start with /demo (after Application path)
+@RequestMapping(path = "/lists")
 public class ListController {
 
     @Autowired
@@ -37,8 +39,8 @@ public class ListController {
     }
 
     @GetMapping(path = "")
-    public ResponseEntity<Iterable<List>> getAllLists() {
-        // This returns a JSON or XML with the users
+    public Iterable<List> getAllLists() {
+
         return listService.findAllLists();
     }
 
@@ -59,5 +61,4 @@ public class ListController {
 
         return "Saved";
     }
-
 }

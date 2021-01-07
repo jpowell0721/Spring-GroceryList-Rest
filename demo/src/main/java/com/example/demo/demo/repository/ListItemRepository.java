@@ -8,5 +8,6 @@ import com.example.demo.demo.model.ListItem;
 // CRUD refers Create, Read, Update, Delete
 
 public interface ListItemRepository extends CrudRepository<ListItem, Integer> {
+
     Iterable<ListItem> findAllByListId(Integer Id);
 }
