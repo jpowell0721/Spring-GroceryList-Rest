@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -45,14 +44,12 @@ public class ListController {
     }
 
     @GetMapping(path = "/{id}/items")
-    public @ResponseBody
-    Iterable<ListItem> getAllListItems(@PathVariable("id") Integer Id) {
+    public Iterable<ListItem> getAllListItems(@PathVariable("id") Integer Id) {
         return listItemRepository.findAllByListId(Id);
     }
 
     @PostMapping(path = "/{id}")
-    public @ResponseBody
-    String addNewListItem(@RequestParam String name, @PathVariable("id") Integer Id) {
+    public String addNewListItem(@RequestParam String name, @PathVariable("id") Integer Id) {
         ListItem listItem = new ListItem();
         listItem.setName(name);
         listItem.setList(listService.findListById(Id).get());
